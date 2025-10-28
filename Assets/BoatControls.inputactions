@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "BoatControls",
+    "maps": [
+        {
+            "name": "Boat",
+            "id": "5765bb4a-fb89-4ddd-a3f9-d462a5465634",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Value",
+                    "id": "5b91162f-d3fc-441d-939c-18d1ca72e5af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8ca35817-33be-4d03-be2e-2def1b22afb0",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
