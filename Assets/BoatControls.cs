@@ -94,25 +94,87 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Left"",
-                    ""type"": ""Value"",
-                    ""id"": ""5b91162f-d3fc-441d-939c-18d1ca72e5af"",
+                    ""type"": ""Button"",
+                    ""id"": ""9883a6fa-4213-4523-addd-2a4d4bb1c47e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0558de7-074a-40cf-aadc-45bb5f9b5223"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Forward"",
+                    ""type"": ""Button"",
+                    ""id"": ""f60aa0a5-6785-4fa4-b7e1-edd94174a3d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""8ca35817-33be-4d03-be2e-2def1b22afb0"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""3cff7ab9-a84a-46f9-9cd2-b53c76794f34"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72337540-4e5c-4437-8d50-a90aad2fd44a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""769f1209-8ef9-4ec8-a692-9e506810cb75"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Forward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""e0bfbacf-daba-444a-b3a9-cbddf6b83c87"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Forward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""11c96c38-60a1-45a5-bc38-5ca357d63120"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Forward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -122,6 +184,8 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
         // Boat
         m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
         m_Boat_Left = m_Boat.FindAction("Left", throwIfNotFound: true);
+        m_Boat_Right = m_Boat.FindAction("Right", throwIfNotFound: true);
+        m_Boat_Forward = m_Boat.FindAction("Forward", throwIfNotFound: true);
     }
 
     ~@BoatControls()
@@ -203,6 +267,8 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Boat;
     private List<IBoatActions> m_BoatActionsCallbackInterfaces = new List<IBoatActions>();
     private readonly InputAction m_Boat_Left;
+    private readonly InputAction m_Boat_Right;
+    private readonly InputAction m_Boat_Forward;
     /// <summary>
     /// Provides access to input actions defined in input action map "Boat".
     /// </summary>
@@ -218,6 +284,14 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Boat/Left".
         /// </summary>
         public InputAction @Left => m_Wrapper.m_Boat_Left;
+        /// <summary>
+        /// Provides access to the underlying input action "Boat/Right".
+        /// </summary>
+        public InputAction @Right => m_Wrapper.m_Boat_Right;
+        /// <summary>
+        /// Provides access to the underlying input action "Boat/Forward".
+        /// </summary>
+        public InputAction @Forward => m_Wrapper.m_Boat_Forward;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -247,6 +321,12 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
             @Left.started += instance.OnLeft;
             @Left.performed += instance.OnLeft;
             @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+            @Forward.started += instance.OnForward;
+            @Forward.performed += instance.OnForward;
+            @Forward.canceled += instance.OnForward;
         }
 
         /// <summary>
@@ -261,6 +341,12 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
             @Left.started -= instance.OnLeft;
             @Left.performed -= instance.OnLeft;
             @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+            @Forward.started -= instance.OnForward;
+            @Forward.performed -= instance.OnForward;
+            @Forward.canceled -= instance.OnForward;
         }
 
         /// <summary>
@@ -308,5 +394,19 @@ public partial class @BoatControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Forward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnForward(InputAction.CallbackContext context);
     }
 }

@@ -8,25 +8,87 @@
             "actions": [
                 {
                     "name": "Left",
-                    "type": "Value",
-                    "id": "5b91162f-d3fc-441d-939c-18d1ca72e5af",
+                    "type": "Button",
+                    "id": "9883a6fa-4213-4523-addd-2a4d4bb1c47e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "c0558de7-074a-40cf-aadc-45bb5f9b5223",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Forward",
+                    "type": "Button",
+                    "id": "f60aa0a5-6785-4fa4-b7e1-edd94174a3d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "8ca35817-33be-4d03-be2e-2def1b22afb0",
-                    "path": "<Keyboard>/a",
+                    "id": "3cff7ab9-a84a-46f9-9cd2-b53c76794f34",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72337540-4e5c-4437-8d50-a90aad2fd44a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "769f1209-8ef9-4ec8-a692-9e506810cb75",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Forward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "e0bfbacf-daba-444a-b3a9-cbddf6b83c87",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "11c96c38-60a1-45a5-bc38-5ca357d63120",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
